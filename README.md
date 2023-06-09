@@ -1,9 +1,9 @@
 # Noob
 
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=dimasbagussusilo_nb-go-http&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=dimasbagussusilo_nb-go-http)
-[![Go Reference](https://pkg.go.dev/badge/github.com/dimasbagussusilo/nb-go-http.svg)](https://pkg.go.dev/github.com/dimasbagussusilo/nb-go-http)
-![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/dimasbagussusilo/nb-go-http?style=flat-square)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/dimasbagussusilo/nb-go-http?style=flat-square)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=alfarih31_nb-go-http&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=alfarih31_nb-go-http)
+[![Go Reference](https://pkg.go.dev/badge/github.com/alfarih31/nb-go-http.svg)](https://pkg.go.dev/github.com/alfarih31/nb-go-http)
+![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/alfarih31/nb-go-http?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/alfarih31/nb-go-http?style=flat-square)
 
 Noob is a REST API framework for faster development by providing several common functions, such as:
 - Query Parsing
@@ -29,13 +29,13 @@ To install this package, you need to install Go (**version 1.17+ is required**) 
 1. After you initiate your workspace then you can install this package with below command.
 
 ```shell
-go get -u github.com/dimasbagussusilo/nb-go-http
+go get -u github.com/alfarih31/nb-go-http
 ```
 
 2. Import it in your code
 
 ```go
-import "github.com/dimasbagussusilo/nb-go-http"
+import "github.com/alfarih31/nb-go-http"
 ```
 
 ## Quick Start & Usage
@@ -44,7 +44,7 @@ See the example: [sample_app](examples/sample_app.go)
 
 ## Contributors ##
 
-- Dimas Bagus Susilo <dimasbagussusilo@gmail.com>
+- Alfarih Faza <alfarihfz@gmail.com>
 
 ## License
 

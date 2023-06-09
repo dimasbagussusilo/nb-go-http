@@ -2,7 +2,8 @@ package noob
 
 import (
 	"fmt"
-	keyvalue "github.com/dimasbagussusilo/nb-go-keyvalue"
+	"github.com/dimasbagussusilo/nb-go-keyvalue"
+	"github.com/dimasbagussusilo/nb-go-parser"
 )
 
 type QueryParser HandlerCtx

@@ -1,8 +1,8 @@
 package noob
 
 import (
-	keyvalue "github.com/dimasbagussusilo/nb-go-keyvalue"
-	parser "github.com/dimasbagussusilo/nb-go-parser"
+	"github.com/dimasbagussusilo/nb-go-keyvalue"
+	"github.com/dimasbagussusilo/nb-go-parser"
 )
 
 type ResponseMap map[HTTPStatusCode]Response

@@ -3,8 +3,8 @@ package noob
 import (
 	"context"
 	"fmt"
-	keyvalue "github.com/dimasbagussusilo/nb-go-keyvalue"
-	logger "github.com/dimasbagussusilo/nb-go-logger"
+	"github.com/dimasbagussusilo/nb-go-keyvalue"
+	"github.com/dimasbagussusilo/nb-go-logger"
 	"golang.org/x/time/rate"
 	"time"
 )

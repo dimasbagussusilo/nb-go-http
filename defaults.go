@@ -2,7 +2,7 @@ package noob
 
 import (
 	"github.com/dimasbagussusilo/nb-go-http/utils"
-	keyvalue "github.com/dimasbagussusilo/nb-go-keyvalue"
+	"github.com/dimasbagussusilo/nb-go-keyvalue"
 	"time"
 )
 
