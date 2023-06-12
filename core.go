@@ -1,11 +1,21 @@
 package noob
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/dimasbagussusilo/nb-go-parser"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+	"github.com/sirupsen/logrus"
+	"io"
+	"mime"
+	"mime/multipart"
 	"net"
+	"net/http"
 	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
 	"time"
 )
 
@@ -75,8 +85,112 @@ func notImplemented(fname string) func() error {
 	}
 }
 
+type logEntry struct {
+	Request  string
+	Response string
+	Headers  map[string][]string
+	Status   int
+	Latency  time.Duration
+	ClientIP string
+	Method   string
+	Path     string
+}
+
+func CustomLogger(modulePath string, logger *logrus.Logger) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		generatedUUID := uuid.New().String()
+		c.Set("RequestID", generatedUUID)
+
+		startTime := time.Now()
+
+		buf, _ := io.ReadAll(c.Request.Body)
+		c.Request.Body = io.NopCloser(bytes.NewBuffer(buf))
+
+		c.Next()
+
+		if c.Writer.Status() > http.StatusBadRequest {
+			// Read the request body
+			body, _ := c.GetRawData()
+
+			// Parse the body as a multipart form
+			form, err := parseMultipartForm(body, c.Request.Header.Get("Content-Type"))
+			if err != nil {
+				// Failed to parse as a multipart form, log the raw body instead
+				logWriter(generatedUUID, modulePath, "raw", body)
+			} else {
+				// Format and log the parsed form values
+				content := "Content-Disposition: form-data;\n"
+				for key, values := range form.Value {
+					for _, value := range values {
+						// Handle form-data request
+						content += fmt.Sprintf("key=\"%s\"; value=\"%s\"\n", key, value)
+					}
+				}
+				if content != "Content-Disposition: form-data;\n" {
+					logWriter(generatedUUID, modulePath, "fields", []byte(content))
+				}
+
+				for key, files := range form.File {
+					for _, file := range files {
+						//Convert file to []byte
+						arrayOfBytes, err := fileToArrayOfBytes(file)
+						if err != nil {
+							fmt.Printf("Error converting file to base64: %v\n", err)
+						} else {
+							extension := filepath.Ext(file.Filename)
+							fileName := fmt.Sprintf("%s%s", key, extension)
+							logWriter(generatedUUID, modulePath, fileName, arrayOfBytes)
+						}
+					}
+				}
+			}
+
+			// Log the response and request
+			entry := logEntry{
+				Request:  string(buf),
+				Response: fmt.Sprintf("%v", c.Writer.Status()),
+				Headers:  c.Request.Header,
+				Status:   c.Writer.Status(),
+				Latency:  time.Since(startTime),
+				ClientIP: c.ClientIP(),
+				Method:   c.Request.Method,
+				Path:     c.Request.URL.Path,
+			}
+
+			// Check if an error occurred during request processing
+			if len(c.Errors) > 0 {
+				// Get the line number where the error occurred
+				_, file, line, _ := runtime.Caller(4)
+				fmt.Printf("Error at line %d in file %s\n", line, file)
+			}
+
+			logger.WithFields(logrus.Fields{
+				"id": generatedUUID,
+				//"request":  entry.Request,
+				//"response": entry.Response,
+				//"headers":  entry.Headers,
+				"status": entry.Status,
+				//"latency":  entry.Latency,
+				//"clientIP": entry.ClientIP,
+				"method": entry.Method,
+				"path":   entry.Path,
+			}).Errorf("error with code %d", entry.Status)
+		}
+	}
+}
+
 // New return Core context, used as core of the application
-func New(listener ...net.Listener) *Ctx {
+func New(modulePath string, listener ...net.Listener) *Ctx {
+	logger := logrus.New()
+	logger.Formatter = &logrus.JSONFormatter{}
+
+	file, err := os.OpenFile(modulePath+"/gin.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err == nil {
+		logger.SetOutput(file)
+	} else {
+		logrus.Info("Failed to log to file, using default stderr")
+	}
+
 	// Load isDebug
 	isDebug, _ = parser.String(os.Getenv("DEBUG")).ToBool()
 
@@ -85,6 +199,7 @@ func New(listener ...net.Listener) *Ctx {
 	}
 
 	p := HTTP()
+	p.Engine.Use(CustomLogger(modulePath, logger))
 
 	r := p.Router(DefaultCfg.Path)
 
@@ -101,4 +216,55 @@ func New(listener ...net.Listener) *Ctx {
 	}
 
 	return c
+}
+
+// parseMultipartForm parses the raw request body as a multipart form
+func parseMultipartForm(body []byte, contentType string) (*multipart.Form, error) {
+	// Find the boundary from the content type header
+	_, params, err := mime.ParseMediaType(contentType)
+	if err != nil {
+		return nil, err
+	}
+	boundary := params["boundary"]
+
+	// Create a multipart reader with the given boundary
+	reader := multipart.NewReader(strings.NewReader(string(body)), boundary)
+
+	// Parse the multipart form
+	return reader.ReadForm(0)
+}
+
+// fileToBase64 converts a file to base64 encoding
+func fileToArrayOfBytes(file *multipart.FileHeader) ([]byte, error) {
+	// Open the file
+	openedFile, err := file.Open()
+	if err != nil {
+		return nil, err
+	}
+	defer openedFile.Close()
+
+	// Read the file contents
+	fileContents, err := io.ReadAll(openedFile)
+	if err != nil {
+		return nil, err
+	}
+
+	return fileContents, nil
+}
+
+func logWriter(logId string, path string, filename string, content []byte) {
+	if isDebug {
+		dir := path + "/log_request/" + logId
+		err := os.MkdirAll(dir, 0755)
+		if err != nil {
+			fmt.Println("Error creating directory:", err)
+			return
+		}
+
+		err = os.WriteFile(fmt.Sprintf("%s/log_request/%s/%s", path, logId, filename), content, 0644)
+		if err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
+	}
 }

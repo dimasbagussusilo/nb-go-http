@@ -5,11 +5,14 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	_env "github.com/dimasbagussusilo/nb-go-env"
 	"github.com/dimasbagussusilo/nb-go-http"
 	"github.com/dimasbagussusilo/nb-go-keyvalue"
 	logger "github.com/dimasbagussusilo/nb-go-logger"
+	"os/exec"
 	"runtime"
+	"strings"
 )
 
 type ResponseStatus struct {
@@ -93,14 +96,21 @@ func main() {
 				AllowOrigins: []string{"*"},
 			}
 
-			app := noob.New()
+			cmd := exec.Command("go", "list", "-m", "-f", "{{.Dir}}")
+			output, err := cmd.Output()
+			if err != nil {
+				fmt.Println("Error:", err)
+				return
+			}
+			moduleDir := strings.TrimSpace(string(output))
+
+			app := noob.New(moduleDir)
 
 			g1 := app.Branch("/sample")
 
 			g2 := g1.Branch("/deep")
 
-			g1.GET("/first-inner", func(c *noob.HandlerCtx) (noob.Response, error) {
-
+			g1.POST("/first-inner", func(c *noob.HandlerCtx) (noob.Response, error) {
 				return noob.NewResponseSuccess(noob.ResponseBody{
 					Message: "G1 First",
 				}), nil

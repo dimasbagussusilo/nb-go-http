@@ -1,0 +1,47 @@
+
+{"level":"error","method":"POST","msg":"Error with status code 404 occour in [POST] /v1","path":"/v1","status":404,"time":"2023-06-11T17:54:37+07:00"}
+{"level":"error","method":"POST","msg":"Error with status code 404 occour in [POST] /v1","path":"/v1","status":404,"time":"2023-06-11T17:55:37+07:00"}
+{"level":"error","method":"POST","msg":"","path":"/v1","status":404,"time":"2023-06-11T17:57:57+07:00"}
+{"level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T18:14:30+07:00"}
+{"fields.msg":null,"level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T18:15:44+07:00"}
+{"id":"c7f37a39-dd6a-4ede-9db9-bf88dea348b0","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T18:19:50+07:00"}
+{"id":"78dc56bb-904b-4193-80aa-031bd3dc9136","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:15:18+07:00"}
+{"id":"60aef95d-83bb-4b90-8bfb-eac2a1215bc9","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:16:28+07:00"}
+{"id":"94e8de78-1e19-4093-acda-cb1c1804bbd5","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:16:45+07:00"}
+{"id":"d04d94cb-1282-48f7-9485-37221a4dffc8","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:17:48+07:00"}
+{"id":"b10a3ecc-b2a3-4fdd-9098-c3aaec209579","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:24:28+07:00"}
+{"id":"2723a2eb-14c1-43c6-b770-16213e7b2a60","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:28:01+07:00"}
+{"id":"ec3c527b-c32a-42c7-9bed-669b96214c3a","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:29:56+07:00"}
+{"id":"6a5bc7a1-b2b3-46db-a5db-4bce7f56f1d8","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:31:26+07:00"}
+{"id":"c58d2616-39af-46d7-a0eb-daec42e30146","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:33:43+07:00"}
+{"id":"8f24f7f2-d6e8-4f12-8b35-98a48c9676dc","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:41:57+07:00"}
+{"id":"f6985469-ee1b-4508-ad20-41ad31b076e0","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:42:48+07:00"}
+{"id":"890cb81f-07c8-44c6-80df-64ebd9f76fa1","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:49:06+07:00"}
+{"id":"b7b2478b-d150-47ab-8cac-a94e2035ab8b","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:49:36+07:00"}
+{"id":"103ea825-d31d-4bf1-83cd-a2f09d4d4712","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:51:15+07:00"}
+{"id":"e064cc2a-2fd8-44f4-a87f-cd1348014cfc","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:52:11+07:00"}
+{"id":"2f0c454c-06d8-43e5-ab56-4a9dca48786d","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:52:26+07:00"}
+{"id":"fcd2c446-d715-442d-9b8f-4126d9769b9e","level":"error","method":"POST","msg":"error with code 404","path":"/v1","status":404,"time":"2023-06-11T22:55:17+07:00"}
+{"id":"7745090f-3125-42e3-bc85-44cef8fe03a6","level":"error","method":"POST","msg":"error with code 404","path":"/first-inner","status":404,"time":"2023-06-12T07:08:38+07:00"}
+{"id":"174d3ebf-cf71-4315-aadf-35f1743fa08a","level":"error","method":"GET","msg":"error with code 404","path":"/first-inner","status":404,"time":"2023-06-12T07:08:42+07:00"}
+{"id":"0c8dbec9-bac4-4241-a460-8807f0921255","level":"error","method":"GET","msg":"error with code 404","path":"/v1/first-inner","status":404,"time":"2023-06-12T07:08:54+07:00"}
+{"id":"c0f7c2fb-e416-4a75-96fc-91b403ad17ba","level":"error","method":"GET","msg":"error with code 404","path":"/v1/sample","status":404,"time":"2023-06-12T07:09:07+07:00"}
+{"id":"491f3625-6bd1-43b8-bf21-9a10e1d5feed","level":"error","method":"GET","msg":"error with code 404","path":"/v1/first-inner","status":404,"time":"2023-06-12T07:09:58+07:00"}
+{"id":"ee7677a3-2559-4699-9c50-4c373bdbb768","level":"error","method":"GET","msg":"error with code 404","path":"/first-inner","status":404,"time":"2023-06-12T07:10:01+07:00"}
+{"id":"d24fdb40-8a21-44e0-852e-c148057f5fef","level":"error","method":"GET","msg":"error with code 404","path":"/v1/first-inner","status":404,"time":"2023-06-12T07:10:23+07:00"}
+{"id":"510eb336-644f-400e-b481-a3876497126a","level":"error","method":"GET","msg":"error with code 404","path":"/v1/deep/first-inner","status":404,"time":"2023-06-12T07:10:35+07:00"}
+{"id":"30bb0d90-acf7-4150-9936-a08f4fcd5011","level":"error","method":"POST","msg":"error with code 404","path":"/v1/sample/deep/first-inner","status":404,"time":"2023-06-12T07:12:35+07:00"}
+{"id":"df610037-7c2b-4b2b-9398-922461c56861","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:12:43+07:00"}
+{"id":"1d773ab6-745c-49a7-929b-7c103bc80e64","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:13:04+07:00"}
+{"id":"95840c3c-ab48-4cdb-a7a5-c4451b318826","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:13:13+07:00"}
+{"id":"53bebdf2-2c20-4926-869b-cc8b32d23070","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:18:39+07:00"}
+{"id":"36f94c09-18eb-4fd0-bee2-05cbe6036645","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:19:14+07:00"}
+{"id":"d12d7acf-b0a0-4d03-8642-cfb3bad8df11","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:19:38+07:00"}
+{"id":"e35fd6f8-75bd-4515-9a13-47db5c43ca2d","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:26:17+07:00"}
+{"id":"1ab19b89-72e5-469f-a7a6-b3e0c5a86c3a","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:26:35+07:00"}
+{"id":"058a7735-bfcd-4746-b703-788c7b76aee5","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:56:07+07:00"}
+{"id":"02cbe119-78e7-4f95-8d1b-56f241237ab0","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:56:37+07:00"}
+{"id":"236fce18-8fa5-4372-9537-ba7d29aee9fb","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:57:15+07:00"}
+{"id":"b96ce668-df1c-4f08-8540-899d47c278d6","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:57:52+07:00"}
+{"id":"eb5fdae4-f510-4bd6-94b2-ab96004971c5","level":"error","method":"POST","msg":"error with code 500","path":"/v1/sample/first-inner","status":500,"time":"2023-06-12T07:59:24+07:00"}
+{"id":"5d610a34-9d54-4a28-b189-792ffd6d8063","level":"error","method":"POST","msg":"error with code 404","path":"/v1/sample/first-inners","status":404,"time":"2023-06-12T08:01:43+07:00"}
