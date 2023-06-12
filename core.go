@@ -108,7 +108,7 @@ func CustomLogger(modulePath string, logger *logrus.Logger) gin.HandlerFunc {
 
 		c.Next()
 
-		if c.Writer.Status() > http.StatusBadRequest {
+		if isDebug && c.Writer.Status() > http.StatusBadRequest {
 			// Read the request body
 			body, _ := c.GetRawData()
 
@@ -253,18 +253,16 @@ func fileToArrayOfBytes(file *multipart.FileHeader) ([]byte, error) {
 }
 
 func logWriter(logId string, path string, filename string, content []byte) {
-	if isDebug {
-		dir := path + "/log_request/" + logId
-		err := os.MkdirAll(dir, 0755)
-		if err != nil {
-			fmt.Println("Error creating directory:", err)
-			return
-		}
+	dir := path + "/log_request/" + logId
+	err := os.MkdirAll(dir, 0755)
+	if err != nil {
+		fmt.Println("Error creating directory:", err)
+		return
+	}
 
-		err = os.WriteFile(fmt.Sprintf("%s/log_request/%s/%s", path, logId, filename), content, 0644)
-		if err != nil {
-			fmt.Println("Error:", err)
-			return
-		}
+	err = os.WriteFile(fmt.Sprintf("%s/log_request/%s/%s", path, logId, filename), content, 0644)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
 	}
 }
