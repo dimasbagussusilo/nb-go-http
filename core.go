@@ -96,6 +96,21 @@ type logEntry struct {
 	Path     string
 }
 
+type bodyLogWriter struct {
+	gin.ResponseWriter
+	body *bytes.Buffer
+}
+
+func (w bodyLogWriter) Write(b []byte) (int, error) {
+	w.body.Write(b)
+	return w.ResponseWriter.Write(b)
+}
+
+func (w bodyLogWriter) WriteString(s string) (int, error) {
+	w.body.WriteString(s)
+	return w.ResponseWriter.WriteString(s)
+}
+
 func CustomLogger(modulePath string, logger *logrus.Logger) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		generatedUUID := uuid.New().String()
@@ -106,9 +121,12 @@ func CustomLogger(modulePath string, logger *logrus.Logger) gin.HandlerFunc {
 		buf, _ := io.ReadAll(c.Request.Body)
 		c.Request.Body = io.NopCloser(bytes.NewBuffer(buf))
 
+		blw := &bodyLogWriter{body: bytes.NewBufferString(""), ResponseWriter: c.Writer}
+		c.Writer = blw
+
 		c.Next()
 
-		if isDebug && c.Writer.Status() > http.StatusBadRequest {
+		if c.Writer.Status() >= http.StatusBadRequest {
 			// Read the request body
 			body, _ := c.GetRawData()
 
@@ -172,8 +190,9 @@ func CustomLogger(modulePath string, logger *logrus.Logger) gin.HandlerFunc {
 				"status": entry.Status,
 				//"latency":  entry.Latency,
 				//"clientIP": entry.ClientIP,
-				"method": entry.Method,
-				"path":   entry.Path,
+				"method":   entry.Method,
+				"path":     entry.Path,
+				"response": blw.body.String(),
 			}).Errorf("error with code %d", entry.Status)
 		}
 	}
