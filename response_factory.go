@@ -15,7 +15,9 @@ func NewResponseError(code HTTPStatusCode, body ResponseBody, header ...Response
 		fmt.Println("Failed to get caller information.")
 	}
 
-	body.Errors = fmt.Sprintf("{\"file\": \"%s\",\"line\": %d}", file, line)
+	fmt.Println(fmt.Sprintf("{\"file\": \"%s\",\"line\": %d}", file, line))
+
+	//body.Errors = fmt.Sprintf("{\"file\": \"%s\",\"line\": %d}", file, line)
 
 	h := ResponseHeader{}
 	if len(header) > 0 {
