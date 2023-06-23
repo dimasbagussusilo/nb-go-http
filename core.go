@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/dimasbagussusilo/nb-go-parser"
+	contribCors "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
@@ -38,10 +39,10 @@ func (co *Ctx) Start() error {
 
 	cfg := DefaultCfg
 
-	crs := new(cors)
+	//crs := new(cors)
 
 	// Prepare handlers for no route
-	middlewares := []HandlerFunc{handleRequestLogger(log), crs.HandleCORS, HandleThrottling(), HandleTimeout}
+	middlewares := []HandlerFunc{handleRequestLogger(log), HandleThrottling(), HandleTimeout}
 
 	co.USE(middlewares...)
 	// Handle root
@@ -219,6 +220,13 @@ func New(modulePath string, listener ...net.Listener) *Ctx {
 
 	p := HTTP()
 	p.Engine.Use(CustomLogger(modulePath, logger))
+
+	// Setup Cors
+	corsConfig := contribCors.DefaultConfig()
+	corsConfig.AllowOrigins = []string{"*", "http://localhost"}
+	corsConfig.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"}
+	corsConfig.AllowHeaders = []string{"Origin", "Content-Length", "Content-Role", "Authorization"}
+	p.Engine.Use(contribCors.New(corsConfig))
 
 	r := p.Router(DefaultCfg.Path)
 
